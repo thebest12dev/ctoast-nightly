@@ -1,6 +1,9 @@
 name: CinnamonToast Nightly
 
 on:
+  push:
+    branches:
+      - dev  # for now
   schedule:
   - cron: 0 1 * * * 
 permissions:
