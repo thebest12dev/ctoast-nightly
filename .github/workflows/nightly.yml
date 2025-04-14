@@ -3,7 +3,7 @@ name: CinnamonToast Nightly
 on:
   push:
     branches:
-      - main  # for now
+      - main  # for now 
   schedule:
   - cron: 0 1 * * * 
 permissions:
