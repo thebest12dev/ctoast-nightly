@@ -1,4 +1,4 @@
-name: CinnamonToast Nightly
+name: Reflect Nightly
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        repository: thebest12dev/cinnamontoast
+        repository: thebest12dev/reflect
         ref: dev
     - name: Set up JDK
       uses: actions/setup-java@v2
@@ -66,7 +66,7 @@ jobs:
         $VCPKG_PATH="$PWD/../vcpkg/scripts/buildsystems/vcpkg.cmake"
         echo $VCPKG_PATH
         
-        cmake .. -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="$VCPKG_PATH" -DPKG_CONFIG_EXECUTABLE="$PWD/../vcpkg/packages/pkgconf_x64-windows/tools/pkgconf/pkgconf.exe"
+        cmake .. -G "Visual Studio 17 2022" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="$VCPKG_PATH" -DPKG_CONFIG_EXECUTABLE="$PWD/../vcpkg/packages/pkgconf_x64-windows/tools/pkgconf/pkgconf.exe" -DCMAKE_SYSTEM_VERSION=10.0.22621.0 
 
     # Step 5: Build the project with MSBuild
     - name: Build with MSBuild
@@ -94,12 +94,12 @@ jobs:
         tag_name: nightly-${{ github.run_id }}
         release_name: Nightly Build ${{ github.run_id }}
         body: |
-          This is the nightly build of CinnamonToast.
+          This is the nightly build of Reflect.
           These builds are automatically generated, and may contain bugs.
           If you see any bugs, please submit an issue immediately.
 
           Please note that these builds are not signed.
         files: |
-          build/Release/ctoast_nightly-${{ github.run_id }}.zip
+          build/Release/reflect_nightly-${{ github.run_id }}.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
